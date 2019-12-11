@@ -3,8 +3,9 @@ namespace morphos\test\Russian;
 
 use morphos\Russian\Cases;
 use morphos\Russian\GeographicalNamesInflection;
+use PHPUnit\Framework\TestCase;
 
-class GeographicalNamesInflectionTest extends \PHPUnit_Framework_TestCase
+class GeographicalNamesInflectionTest extends TestCase
 {
     /**
      * @dataProvider wordsProvider
@@ -87,6 +88,10 @@ class GeographicalNamesInflectionTest extends \PHPUnit_Framework_TestCase
             // неизменяемые названия
             ['США', 'США', 'США', 'США', 'США', 'США'],
             ['ОАЭ', 'ОАЭ', 'ОАЭ', 'ОАЭ', 'ОАЭ', 'ОАЭ'],
+
+            ['Сочи', 'Сочи', 'Сочи', 'Сочи', 'Сочи', 'Сочи'],
+            ['Кемерово', 'Кемерово', 'Кемерово', 'Кемерово', 'Кемерово', 'Кемерово'],
+            ['Назарово', 'Назарово', 'Назарово', 'Назарово', 'Назарово', 'Назарово'],
         );
     }
 

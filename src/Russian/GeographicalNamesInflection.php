@@ -257,7 +257,19 @@ class GeographicalNamesInflection extends \morphos\BaseInflection implements Cas
                 case 'ги':
                 // Ушачи, Ивацевичи
                 case 'чи':
-                    $prefix = S::name(S::slice($name, 0, -1));
+
+                $prefix = S::name(S::slice($name, 0, -1));
+
+                if ($name === 'сочи')
+                    return [
+                        static::IMENIT => $prefix.'и',
+                        static::RODIT => $prefix.'и',
+                        static::DAT => $prefix.'и',
+                        static::VINIT => $prefix.'и',
+                        static::TVORIT => $prefix.'и',
+                        static::PREDLOJ => $prefix.'и',
+                    ];
+
                     return [
                         static::IMENIT => $prefix . 'и',
                         static::RODIT => ($name === 'луки'
@@ -345,18 +357,6 @@ class GeographicalNamesInflection extends \morphos\BaseInflection implements Cas
                         static::VINIT => $prefix.'ь',
                         static::TVORIT => $prefix.'ью',
                         static::PREDLOJ => $prefix.'и',
-                    ];
-
-                //
-                case 'чи':
-                    $prefix = S::name(S::slice($name, 0, -1));
-                    return [
-                        static::IMENIT => $prefix.'и',
-                        static::RODIT => $prefix.'ей',
-                        static::DAT => $prefix.'ам',
-                        static::VINIT => $prefix.'и',
-                        static::TVORIT => $prefix.'ами',
-                        static::PREDLOJ => $prefix.'ах',
                     ];
 
                 // Глубокое
@@ -459,7 +459,7 @@ class GeographicalNamesInflection extends \morphos\BaseInflection implements Cas
 
             // ов, ово, ёв, ёво, ев, ево, ...
             $suffixes = ['ов', 'ёв', 'ев', 'ин', 'ын'];
-            if ((in_array(S::slice($name, -1), ['е', 'о'], true) && in_array(S::slice($name, -3, -1), $suffixes, true)) || in_array(S::slice($name, -2), $suffixes, true)) {
+            if( in_array(S::slice($name, -2), $suffixes, true) ){
                 // ово, ёво, ...
                 if (in_array(S::slice($name, -3, -1), $suffixes, true)) {
                     $prefix = S::name(S::slice($name, 0, -1));
